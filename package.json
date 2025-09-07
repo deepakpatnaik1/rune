@@ -1,0 +1,30 @@
+{
+  "name": "rune",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --parallel dev",
+    "start": "pnpm run dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "format": "pnpm -r format",
+    "type-check": "pnpm -r type-check",
+    "clean": "pnpm -r clean"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.0",
+    "prettier": "^3.2.0",
+    "typescript": "^5.4.0"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": ["@algolia/client-search"]
+    }
+  }
+}

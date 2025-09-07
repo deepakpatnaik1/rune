@@ -1,0 +1,16 @@
+{
+  "extends": ["../../.eslintrc.json"],
+  "plugins": ["svelte"],
+  "overrides": [
+    {
+      "files": ["*.svelte"],
+      "parser": "svelte-eslint-parser",
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser"
+      }
+    }
+  ],
+  "env": {
+    "browser": true
+  }
+}

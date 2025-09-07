@@ -1,0 +1,7 @@
+{
+  "extends": ["../../.eslintrc.json"],
+  "env": {
+    "worker": true,
+    "es6": true
+  }
+}
