@@ -10,7 +10,7 @@ type Bindings = {
 const app = new Hono<{ Bindings: Bindings }>()
 
 app.use('/api/*', cors({
-  origin: ['http://localhost:5173'],
+  origin: ['http://localhost:5173', 'http://localhost:5174'],
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowHeaders: ['Content-Type', 'Authorization'],
 }))
@@ -49,27 +49,83 @@ app.post('/api/chat', async (c) => {
       { role: 'user', content: message }
     ]
 
-    console.log('openai-request', { model: 'gpt-4', messageCount: chatMessages.length })
+    console.log('openai-request', { model: 'gpt-5', messageCount: chatMessages.length })
 
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-4', // Using gpt-4 as gpt-5 might not be available yet
+    const stream = await openai.chat.completions.create({
+      model: 'gpt-5', // Using GPT-5 full model as requested by Boss
       messages: chatMessages,
-      max_tokens: 1000,
-      temperature: 0.7
+      max_completion_tokens: 1000, // GPT-5 uses max_completion_tokens instead of max_tokens
+      // temperature: 0.7 // GPT-5 only supports default temperature (1)
+      stream: true, // Enable streaming
     })
 
-    const response = completion.choices[0]?.message?.content || 'No response generated'
-    
-    console.log('openai-response', { success: true, responseLength: response.length })
+    console.log('openai-stream-start', { model: 'gpt-5', messageCount: chatMessages.length })
 
-    return c.json({
-      response,
-      messages: [...chatMessages, { role: 'assistant', content: response }]
+    // Set up Server-Sent Events headers
+    c.header('Content-Type', 'text/event-stream')
+    c.header('Cache-Control', 'no-cache')
+    c.header('Connection', 'keep-alive')
+    c.header('Access-Control-Allow-Origin', '*')
+    c.header('Access-Control-Allow-Headers', 'Content-Type')
+
+    let fullResponse = ''
+
+    const encoder = new TextEncoder()
+    const readable = new ReadableStream({
+      async start(controller) {
+        try {
+          // Send initial data with user message
+          const initialData = {
+            type: 'start',
+            messages: [...chatMessages]
+          }
+          controller.enqueue(encoder.encode(`data: ${JSON.stringify(initialData)}\n\n`))
+
+          // Process the stream
+          for await (const chunk of stream) {
+            const content = chunk.choices?.[0]?.delta?.content || ''
+            if (content) {
+              fullResponse += content
+              const streamData = {
+                type: 'content',
+                content: content,
+                fullResponse: fullResponse
+              }
+              controller.enqueue(encoder.encode(`data: ${JSON.stringify(streamData)}\n\n`))
+            }
+          }
+
+          // Send completion data
+          const completeData = {
+            type: 'complete',
+            response: fullResponse,
+            messages: [...chatMessages, { role: 'assistant', content: fullResponse }]
+          }
+          controller.enqueue(encoder.encode(`data: ${JSON.stringify(completeData)}\n\n`))
+          
+          console.log('openai-stream-complete', { responseLength: fullResponse.length })
+          controller.close()
+        } catch (error) {
+          console.error('stream-error', { error: error.message })
+          const errorData = { type: 'error', error: error.message }
+          controller.enqueue(encoder.encode(`data: ${JSON.stringify(errorData)}\n\n`))
+          controller.close()
+        }
+      }
     })
+
+    return new Response(readable)
 
   } catch (error) {
-    console.error('chat-error', { error: error.message })
-    return c.json({ error: 'Failed to process chat request' }, 500)
+    console.error('chat-error', { 
+      error: error.message, 
+      status: error.status,
+      details: error.error || error 
+    })
+    return c.json({ 
+      error: 'Failed to process chat request',
+      details: error.message 
+    }, 500)
   }
 })
 
