@@ -91,5 +91,6 @@
   .content {
     margin-left: var(--content-indent);
     line-height: var(--line-height);
+    font-size: var(--font-size);
   }
 </style>
