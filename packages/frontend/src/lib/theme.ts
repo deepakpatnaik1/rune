@@ -59,5 +59,14 @@ export const extractThemeValues = () => {
     labelLetterSpacing: theme.scrollback.roleLabel.letterSpacing,
     labelPadding: theme.scrollback.layout.roleLabel.padding,
     labelBorderRadius: theme.scrollback.roleLabel.borderRadius,
+    
+    // Input component styling
+    inputGap: theme.inputBar.layout.gap,
+    inputPadding: theme.inputBar.layout.padding,
+    textareaMinHeight: theme.textInput.layout.minHeight,
+    buttonPadding: theme.inputBar.button.padding,
+    disabledOpacity: theme.inputBar.button.disabledOpacity,
+    borderWidth: theme.inputBar.border.width,
+    transitionDuration: theme.inputBar.button.transitionDuration,
   };
 };

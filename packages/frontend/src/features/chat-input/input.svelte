@@ -20,7 +20,7 @@
     EventBus.emit('message-sent', { messages: messages });
 
     try {
-      const response = await fetch('http://localhost:8787/api/chat', {
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -121,24 +121,24 @@
 <style>
   .input-container {
     position: fixed;
-    bottom: 20px;
+    bottom: var(--input-bottom);
     left: 50%;
     transform: translateX(-50%);
-    width: 90%;
-    max-width: 800px;
+    width: var(--messages-width);
+    max-width: var(--messages-max-width);
   }
   
   .input-bar {
     display: flex;
     align-items: flex-end;
-    gap: 12px;
-    padding: 16px;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(20px);
-    border: 2px solid;
-    border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1)) 1;
-    border-radius: 9px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 -2px 8px rgba(255, 255, 255, 0.08);
+    gap: var(--input-gap);
+    padding: var(--input-padding);
+    background: var(--input-background);
+    backdrop-filter: var(--input-backdrop-filter);
+    border: var(--input-border-width) solid;
+    border-image: linear-gradient(to bottom, var(--input-border-top), var(--input-border-bottom)) 1;
+    border-radius: var(--input-border-radius);
+    box-shadow: var(--input-shadow-outer), var(--input-shadow-inner);
   }
   
   textarea {
@@ -146,38 +146,38 @@
     background: transparent;
     border: none;
     outline: none;
-    color: #DFD0B8;
-    font-size: 14px;
-    line-height: 1.5;
+    color: var(--text-color);
+    font-size: var(--font-size);
+    line-height: var(--line-height);
     resize: none;
-    min-height: 20px;
-    font-family: inherit;
+    min-height: var(--textarea-min-height);
+    font-family: var(--font-family);
   }
   
   textarea::placeholder {
-    color: rgba(223, 208, 184, 0.6);
+    color: var(--text-muted);
   }
   
   textarea:disabled {
-    opacity: 0.5;
+    opacity: var(--disabled-opacity);
   }
   
   button {
-    padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
-    color: #DFD0B8;
+    padding: var(--button-padding);
+    background: var(--controls-hover-background);
+    border: var(--border-width) solid var(--input-border-top);
+    border-radius: var(--input-border-radius);
+    color: var(--text-color);
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background var(--transition-duration);
   }
   
   button:hover:not(:disabled) {
-    background: rgba(255, 255, 255, 0.15);
+    background: var(--controls-hover-background);
   }
   
   button:disabled {
-    opacity: 0.5;
+    opacity: var(--disabled-opacity);
     cursor: not-allowed;
   }
 </style>

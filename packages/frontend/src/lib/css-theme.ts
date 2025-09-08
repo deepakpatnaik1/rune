@@ -48,6 +48,9 @@ export const generateCSSProperties = () => {
     --messages-height: ${themeValues.messagesHeight};
     --scrollback-padding: ${themeValues.messagesPadding};
     
+    /* Input container layout */
+    --input-bottom: 20px;
+    
     /* Role label styling */
     --label-font-size: ${themeValues.labelFontSize};
     --label-font-weight: ${themeValues.labelFontWeight};
@@ -55,6 +58,15 @@ export const generateCSSProperties = () => {
     --label-letter-spacing: ${themeValues.labelLetterSpacing};
     --label-padding: ${themeValues.labelPadding};
     --label-border-radius: ${themeValues.labelBorderRadius};
+    
+    /* Input component variables */
+    --input-gap: ${themeValues.inputGap};
+    --input-padding: ${themeValues.inputPadding};
+    --textarea-min-height: ${themeValues.textareaMinHeight};
+    --button-padding: ${themeValues.buttonPadding};
+    --disabled-opacity: ${themeValues.disabledOpacity};
+    --border-width: ${themeValues.borderWidth};
+    --transition-duration: ${themeValues.transitionDuration};
   }`;
 };
 
