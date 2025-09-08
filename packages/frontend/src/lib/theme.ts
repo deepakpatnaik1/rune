@@ -57,6 +57,12 @@ export const extractThemeValues = () => {
     
     // Role label styling
     labelFontSize: theme.scrollback.roleLabel.fontSize,
+    
+    // Typography scale values
+    fontSizeTiny: theme.typography.scale.tiny,
+    fontSizeLarge: theme.typography.scale.large,
+    fontSizeXlarge: theme.typography.scale.xlarge,
+    
     labelFontWeight: theme.scrollback.roleLabel.fontWeight,
     labelTextTransform: theme.scrollback.roleLabel.textTransform,
     labelLetterSpacing: theme.scrollback.roleLabel.letterSpacing,

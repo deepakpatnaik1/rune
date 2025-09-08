@@ -23,6 +23,13 @@ export const generateCSSProperties = () => {
     --line-height: ${themeValues.lineHeight};
     --font-family: ${themeValues.fontFamily};
     
+    /* Typography scale - centralized font sizes */
+    --font-size-base: ${themeValues.fontSize};
+    --font-size-small: ${themeValues.labelFontSize};
+    --font-size-tiny: ${themeValues.fontSizeTiny};
+    --font-size-large: ${themeValues.fontSizeLarge};
+    --font-size-xlarge: ${themeValues.fontSizeXlarge};
+    
     --user-text: ${themeValues.userTextColor};
     --user-bg: ${themeValues.userBackground};
     --user-border: ${themeValues.userBorder};
