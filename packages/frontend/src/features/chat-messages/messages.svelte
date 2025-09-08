@@ -39,11 +39,18 @@
 
 <style>
   .messages-container {
-    height: calc(100vh - 200px);
+    position: fixed;
+    bottom: var(--messages-bottom);
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--messages-width);
+    max-width: var(--messages-max-width);
+    height: var(--messages-height);
     overflow-y: auto;
-    padding: 20px;
-    background: #222831;
-    color: #DFD0B8;
+    padding: var(--scrollback-padding);
+    background: var(--bg-color);
+    color: var(--text-color);
+    border-radius: var(--input-border-radius) var(--input-border-radius) 0 0;
   }
   
   .empty-state {
@@ -51,38 +58,38 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    color: rgba(223, 208, 184, 0.6);
+    color: var(--text-muted);
   }
   
   .message {
-    margin-bottom: 20px;
+    margin-bottom: var(--message-spacing);
   }
   
   .role-label {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 2px 8px;
-    border-radius: 4px;
+    font-size: var(--label-font-size);
+    font-weight: var(--label-font-weight);
+    text-transform: var(--label-text-transform);
+    letter-spacing: var(--label-letter-spacing);
+    padding: var(--label-padding);
+    border-radius: var(--label-border-radius);
     display: inline-block;
-    margin-bottom: 8px;
+    margin-bottom: var(--header-spacing);
   }
   
   .role-label.user {
-    color: #ef4444;
-    background: rgba(239, 68, 68, 0.2);
-    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: var(--user-text);
+    background: var(--user-bg);
+    border: 1px solid var(--user-border);
   }
   
   .role-label.assistant {
-    color: #f97316;
-    background: rgba(249, 115, 22, 0.2);
-    border: 1px solid rgba(249, 115, 22, 0.3);
+    color: var(--assistant-text);
+    background: var(--assistant-bg);
+    border: 1px solid var(--assistant-border);
   }
   
   .content {
-    margin-left: 19px;
-    line-height: 1.5;
+    margin-left: var(--content-indent);
+    line-height: var(--line-height);
   }
 </style>

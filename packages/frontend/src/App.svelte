@@ -1,6 +1,15 @@
 <script lang="ts">
   import { ChatMessages } from './features/chat-messages';
   import { ChatInput } from './features/chat-input';
+  import { generateCSSProperties } from './lib/css-theme';
+  
+  // Inject theme CSS variables
+  const cssProps = generateCSSProperties();
+  if (typeof document !== 'undefined') {
+    const style = document.createElement('style');
+    style.textContent = cssProps;
+    document.head.appendChild(style);
+  }
 </script>
 
 <main>
