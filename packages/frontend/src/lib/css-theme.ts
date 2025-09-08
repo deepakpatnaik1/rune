@@ -41,15 +41,18 @@ export const generateCSSProperties = () => {
     --status-color: ${themeValues.statusColor};
     --status-shadow: ${themeValues.statusShadow};
     
+    /* Main layout */
+    --main-min-height: ${themeValues.mainMinHeight};
+    
     /* Messages container layout */
-    --messages-bottom: 120px;
+    --messages-bottom: ${themeValues.messagesBottom};
     --messages-width: ${themeValues.messagesDefaultWidth};
     --messages-max-width: ${themeValues.messagesMaxWidth};
     --messages-height: ${themeValues.messagesHeight};
     --scrollback-padding: ${themeValues.messagesPadding};
     
     /* Input container layout */
-    --input-bottom: 20px;
+    --input-bottom: ${themeValues.inputBottom};
     
     /* Role label styling */
     --label-font-size: ${themeValues.labelFontSize};

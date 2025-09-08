@@ -6,6 +6,10 @@
   
   "inputBar": {
     "_comment": "Main input container visual styling - transplanted from rainy-night",
+    "layout": {
+      "bottomOffset": "20px",
+      "_bottomOffsetNote": "Distance from bottom of screen for input bar"
+    },
     "background": {
       "_purpose": "Input bar transparency and glass blur effect",
       "color": "rgba(0, 0, 0, 0.85)",
@@ -91,6 +95,12 @@
       "_placeholderNote": "Placeholder text transparency. Change 0.6 to 0.8 = more visible placeholder",
       "selectedColor": "rgba(223, 208, 184, 1)",
       "_selectedNote": "Full opacity for selected dropdown items"
+    },
+    "ui": {
+      "disabledOpacity": "0.6",
+      "_disabledNote": "Opacity for disabled input elements",
+      "transitionDuration": "0.3s",
+      "_transitionNote": "Duration for UI transitions"
     }
   },
   
@@ -164,7 +174,9 @@
     "background": "#222831",
     "color": "#e0e0e0",
     "transition": "all 0.3s ease",
-    "_bodyNote": "Dark page background. Change #222831 to #1a1a1a = darker, #2a3440 = lighter"
+    "_bodyNote": "Dark page background. Change #222831 to #1a1a1a = darker, #2a3440 = lighter",
+    "mainMinHeight": "100vh",
+    "_mainMinHeightNote": "Full viewport height for main container"
   },
   
   "scrollback": {
@@ -181,7 +193,9 @@
         "maxWidth": "calc(100vw - 40px)",
         "_maxWidthNote": "Maximum width with edge padding",
         "breakpoint": "705px",
-        "_breakpointNote": "Viewport width where layout switches to desktop"
+        "_breakpointNote": "Viewport width where layout switches to desktop",
+        "bottomOffset": "120px",
+        "_bottomOffsetNote": "Space above input bar for messages container"
       },
       "messages": {
         "paddingTop": "20px",

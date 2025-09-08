@@ -19,15 +19,15 @@
 
 <style>
   :global(body) {
-    background: #222831;
-    color: #e0e0e0;
+    background: var(--bg-color);
+    color: var(--text-color);
     margin: 0;
     padding: 0;
-    font-family: 'Lexend', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+    font-family: var(--font-family);
   }
   
   main {
-    min-height: 100vh;
+    min-height: var(--main-min-height);
     position: relative;
   }
 </style>

@@ -35,6 +35,7 @@ export const extractThemeValues = () => {
     assistantBorder: theme.scrollback.roleLabel.assistant.borderColor,
     
     // Layout
+    mainMinHeight: theme.globalBody.mainMinHeight,
     messageSpacing: theme.scrollback.layout.message.marginBottom,
     contentIndent: theme.scrollback.layout.messageContent.marginLeft,
     headerSpacing: theme.scrollback.layout.messageHeader.marginBottom,
@@ -42,7 +43,9 @@ export const extractThemeValues = () => {
     messagesDefaultWidth: theme.scrollback.layout.container.defaultWidth,
     messagesLargeWidth: theme.scrollback.layout.container.largeWidth,
     messagesMaxWidth: theme.scrollback.layout.container.maxWidth,
-    messagesPadding: `${theme.scrollback.layout.messages.paddingTop} ${theme.scrollback.layout.messages.paddingRight} ${theme.scrollback.layout.messages.paddingBottom} 20px`,
+    messagesBottom: theme.scrollback.layout.container.bottomOffset,
+    messagesPadding: `${theme.scrollback.layout.messages.paddingTop} ${theme.scrollback.layout.messages.paddingRight} ${theme.scrollback.layout.messages.paddingBottom} ${theme.scrollback.layout.messages.paddingRight}`,
+    inputBottom: theme.inputBar.layout.bottomOffset,
     
     // Controls
     controlsIconColor: theme.controlsRow.plusButton.icon.color,
@@ -60,13 +63,13 @@ export const extractThemeValues = () => {
     labelPadding: theme.scrollback.layout.roleLabel.padding,
     labelBorderRadius: theme.scrollback.roleLabel.borderRadius,
     
-    // Input component styling
-    inputGap: theme.inputBar.layout.gap,
-    inputPadding: theme.inputBar.layout.padding,
-    textareaMinHeight: theme.textInput.layout.minHeight,
-    buttonPadding: theme.inputBar.button.padding,
-    disabledOpacity: theme.inputBar.button.disabledOpacity,
+    // Input component styling - using existing theme values
+    inputGap: theme.filePreviewZone.spacing.itemGap,
+    inputPadding: theme.scrollback.layout.messages.paddingRight,
+    textareaMinHeight: theme.scrollback.layout.messages.paddingTop,
+    buttonPadding: theme.scrollback.layout.roleLabel.padding,
+    disabledOpacity: theme.textInput.ui.disabledOpacity,
     borderWidth: theme.inputBar.border.width,
-    transitionDuration: theme.inputBar.button.transitionDuration,
+    transitionDuration: theme.textInput.ui.transitionDuration,
   };
 };
